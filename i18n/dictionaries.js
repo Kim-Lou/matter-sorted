@@ -1,0 +1,30 @@
+export const LOCALES = ['zh', 'en'];
+export const DEFAULT_LOCALE = 'zh';
+
+export const dictionaries = {
+  zh: {
+    siteTitle: '光选之间 · Kim',
+    heroTitle: '技术为什么演化成现在这样，而不是别的样子',
+    heroDesc: '多光谱融合分选的原理笔记：从感知层的物理限制，到运营层的数据流问题。',
+    notesHeading: '研究笔记',
+    emptyNotes: '还没有发布任何笔记。按 CONTENT_GUIDE.md 添加第一篇。',
+    layerStackHeading: '分选系统的四层结构',
+    backToList: '返回列表',
+    translationMissing: '本文暂无中文版本，以下为英文原文。',
+  },
+  en: {
+    siteTitle: 'Sorted in Light · Kim',
+    heroTitle: 'Why the technology evolved this way, and not another',
+    heroDesc:
+      'Notes on multimodal spectral fusion sorting: from the physical limits of perception to data-flow problems in operations.',
+    notesHeading: 'Notes',
+    emptyNotes: 'No notes published yet.',
+    layerStackHeading: 'The four-layer sorting stack',
+    backToList: 'Back to list',
+    translationMissing: 'No English version yet — showing the original.',
+  },
+};
+
+export function getDictionary(locale) {
+  return dictionaries[locale] || dictionaries[DEFAULT_LOCALE];
+}

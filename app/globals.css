@@ -1,0 +1,71 @@
+:root {
+  --bg: #15171B;
+  --surface: #1B1E23;
+  --text: #EDEAE3;
+  --muted: #8B9096;
+  --border: #2A2D33;
+  --warm: #E8622C;
+  --cool: #3E7CA6;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a { color: inherit; }
+
+.container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 头部导航：窄屏下换行而不是挤压变形 */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+/* 层级堆栈：桌面端横向条带，窄屏下改为纵向堆叠，避免文字挤压 */
+.layer-row {
+  display: flex;
+  align-items: stretch;
+}
+.layer-row-body {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding: 22px 28px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  .layer-row-body {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px;
+    gap: 8px;
+  }
+  .site-header { margin-bottom: 32px; }
+  .hero-title { font-size: 28px !important; }
+}
+
+/* 笔记列表项：日期在窄屏下换到标题下方，不挤压标题 */
+.note-item-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
