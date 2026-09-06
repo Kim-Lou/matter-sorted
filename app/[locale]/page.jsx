@@ -17,7 +17,12 @@ export default async function Home({ params }) {
         <div className="topbar-nav"><a href="#notes">{t.layerStackHeading}</a><a href="#notes">{t.notesHeading}</a><LocaleSwitcher currentLocale={locale} path="" /></div>
       </header>
       <main className="editorial-container">
-        <section className="list-intro"><h1>{t.layerStackHeading}</h1><p>{t.heroDesc}</p></section>
+        <section className="list-intro">
+          <div className="intro-copy"><p className="intro-index">SPECTRAL NOTES · 01</p><h1>{t.layerStackHeading}</h1><p className="intro-description">{t.heroDesc}</p></div>
+          <div className="spectrum-key" aria-label="RGB、近红外、激光和X光波段">
+            <span>RGB</span><span>NIR</span><span>LASER</span><span>X-RAY</span>
+          </div>
+        </section>
         <section id="notes" className="content-list-section">
           {notes.length === 0 && <p className="empty-notes">{t.emptyNotes}</p>}
           <div className="notes-list">{notes.map((note) => (
