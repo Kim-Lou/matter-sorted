@@ -5,7 +5,7 @@ export const dynamic = 'force-static';
 export function GET() {
   const notes = getAllNotes('zh');
   const lines = [
-    '# Matter, Sorted. / 物尽其分',
+    '# Matter Sorted / 物尽其分',
     '',
     '> A personal research site about the technology, products, principles, and constraints of solid-waste sorting.',
     '',
@@ -19,6 +19,7 @@ export function GET() {
     '',
     '## Machine-readable resources',
     '',
+    '- [Article IDs, revisions and metadata](/articles.json)',
     '- [Full Markdown corpus](/llms-full.txt)',
     '- [English site](/en/)',
     '',

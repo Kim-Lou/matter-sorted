@@ -38,7 +38,7 @@ export default async function Home({ params }) {
           ))}</div>
         </section>
       </main>
-      <footer className="site-footer"><p>Matter, Sorted. · 物尽其分</p><p>{locale === 'en' ? 'A personal research archive.' : '个人研究档案。'}</p></footer>
+      <footer className="site-footer"><p>Matter Sorted · 物尽其分</p><p>{locale === 'en' ? 'A personal research archive.' : '个人研究档案。'}</p></footer>
     </div>
   );
 }

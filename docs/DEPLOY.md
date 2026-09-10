@@ -1,7 +1,7 @@
 # Linux 服务器部署指南 / DEPLOY.md
 
-> 发布源：GitHub仓库 `https://github.com/Kim-Lou/MatterSorted.git` 的 `main` 分支。
-> `code` 和 `article` 是协作分支，只有合并到 `main` 的内容才进入生产发布。
+> 发布源：GitHub仓库 `https://github.com/Kim-Lou/matter-sorted.git` 的 `code` 分支。
+> `code` 是唯一代码、构建和版本迭代分支；`article` 只保存文章内容，不放网站代码。
 
 网站是纯静态导出（`next.config.mjs`里`output: 'export'`），构建产物是一堆HTML/CSS/JS/图片，
 不需要Node进程常驻，也不依赖Vercel——可以直接丢给任何一台跑Nginx的Linux服务器。
@@ -55,7 +55,7 @@ server {
 name: Deploy
 on:
   push:
-    branches: [main]
+    branches: [code]
 jobs:
   deploy:
     runs-on: ubuntu-latest

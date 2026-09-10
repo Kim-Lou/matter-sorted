@@ -10,6 +10,14 @@ export function generateStaticParams() {
   return LOCALES.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
+export async function generateMetadata({ params }) {
+  const { locale, slug } = await params;
+  const { data } = getNoteBySlug(slug, locale);
+  return { title: `${data.title} | Matter Sorted`, description: data.abstract,
+    openGraph: { type: 'article', title: data.title, description: data.abstract,
+      publishedTime: data.date, modifiedTime: data.updated } };
+}
+
 export default async function NotePage({ params }) {
   const { locale, slug } = await params;
   const t = getDictionary(locale);
@@ -48,11 +56,15 @@ export default async function NotePage({ params }) {
         {data.title}
       </h1>
       <div className="article-meta">
-        <span>{data.date}</span>
+        <time dateTime={data.date}>{data.date}</time>
+        {data.updated !== data.date && <span>{locale === 'en' ? 'Updated' : '更新'} <time dateTime={data.updated}>{data.updated}</time></span>}
+        <span>v{data.revision}</span>
         <span style={{ color: `var(--layer-${data.layer})` }}>
           {data.layer} {data.band ? `· ${data.band}` : ''}
         </span>
       </div>
+
+      <p className="intro-description">{data.abstract}</p>
 
       {resolvedCover && (
         // eslint-disable-next-line @next/next/no-img-element

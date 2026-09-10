@@ -1,6 +1,6 @@
-# 物尽其分 · Matter, Sorted.
+# 物尽其分 · Matter Sorted
 
-**Matter, Sorted.** (中文：物尽其分) is a personal research site documenting the
+**Matter Sorted** (中文：物尽其分) is a personal research site documenting the
 technology, products, and principles behind multimodal spectral fusion sorting for solid waste — the
 technology that lets machines separate materials by fusing RGB, near-infrared,
 laser, and X-ray signals, most of which fall outside what the human eye can
@@ -68,8 +68,9 @@ video is never committed to Git — only a link to externally hosted video
 Content is developed locally through discussion between Kim and an agent,
 then written as structured MDX and validated by `scripts/publish-check.js`.
 Article work is committed to the `article` branch; site code is developed on
-the `code` branch. Reviewed work is merged into `main` and pushed to
-[`Kim-Lou/MatterSorted`](https://github.com/Kim-Lou/MatterSorted), which
+the `code` branch. The `article` branch contains article materials only, while
+the `code` branch is the single build and version-iteration branch pushed to
+[`Kim-Lou/matter-sorted`](https://github.com/Kim-Lou/matter-sorted.git), which
 is the source of truth used by the website build. No CMS or manual file upload
 is part of the normal publishing path.
 

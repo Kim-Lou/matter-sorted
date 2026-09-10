@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: '物尽其分 · Matter, Sorted.',
+  title: '物尽其分 · Matter Sorted',
   description: '固废分选的技术与产品笔记',
 };
 

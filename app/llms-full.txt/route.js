@@ -10,16 +10,19 @@ export function GET() {
       '',
       `- URL: /zh/notes/${slug}/`,
       `- Date: ${data.date}`,
+      `- ID: ${data.id}`,
+      `- Updated: ${data.updated}`,
+      `- Revision: ${data.revision}`,
       `- Layer: ${data.layer}`,
       ...(data.band ? [`- Band: ${data.band}`] : []),
       `- Abstract: ${data.abstract}`,
       '',
-      content.trim(),
+      content.trim().replace(/\]\(\.\//g, `](/notes/${slug}/`),
     ].join('\n');
   });
 
   const body = [
-    '# Matter, Sorted. / 物尽其分 — Full corpus',
+    '# Matter Sorted / 物尽其分 — Full corpus',
     '',
     'This file contains the canonical Chinese text of every published article.',
     '',

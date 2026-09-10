@@ -5,7 +5,9 @@ import matter from 'gray-matter';
 
 const NOTES_DIR = path.join(process.cwd(), 'content', 'notes');
 const VALID_LAYERS = ['感知层', '决策层', '执行层', '运营层'];
-const REQUIRED_FIELDS = ['title', 'abstract', 'layer', 'date', 'cover'];
+const REQUIRED_FIELDS = ['id', 'title', 'abstract', 'layer', 'date', 'updated', 'revision', 'cover'];
+const ids = new Set();
+const validDate = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !isNaN(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v;
 
 let hasError = false;
 
@@ -34,6 +36,28 @@ for (const dir of noteDirs) {
 
   const raw = fs.readFileSync(indexPath, 'utf-8');
   const { data, content } = matter(raw);
+
+  if (!/^\d{4}-(0[1-9]|1[0-2])-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(dir)) fail(dir, '目录须为 yyyy-mm-slug');
+  if (data.id !== dir) fail(dir, 'id 必须等于稳定目录名，不随标题修订改变');
+  if (ids.has(data.id)) fail(dir, '重复文章 id');
+  ids.add(data.id);
+  if (!validDate(data.date) || !validDate(data.updated)) fail(dir, 'date/updated 必须为有效的带引号 ISO 日期');
+  if (validDate(data.date) && validDate(data.updated) && data.updated < data.date) fail(dir, 'updated 不能早于 date');
+  if (!Number.isInteger(data.revision) || data.revision < 1) fail(dir, 'revision 必须为正整数');
+  if ('slug' in data) fail(dir, '不允许 frontmatter 覆盖路由 slug');
+
+  for (const file of fs.readdirSync(notePath).filter((f) => /^index\..+\.mdx$/.test(f))) {
+    if (file !== 'index.en.mdx') { fail(dir, `不支持的译文文件 ${file}`); continue; }
+    const translated = matter(fs.readFileSync(path.join(notePath, file), 'utf8'));
+    for (const field of ['id', 'date', 'updated', 'revision', 'layer']) {
+      if (translated.data[field] !== data[field]) fail(dir, `${file}: ${field} 必须与原文一致，修订时同步译文`);
+    }
+    for (const field of REQUIRED_FIELDS) if (!translated.data[field]) fail(dir, `${file}: 缺少 ${field}`);
+    const refs = [...translated.content.matchAll(/!\[[^\]]*\]\(\.\/([^)]+)\)/g)].map((m) => m[1]);
+    for (const ref of [translated.data.cover, translated.data.video, ...refs].filter(Boolean)) {
+      if (!fs.existsSync(path.join(notePath, String(ref).replace(/^\.\//, '')))) fail(dir, `${file}: 素材不存在 ${ref}`);
+    }
+  }
 
   for (const field of REQUIRED_FIELDS) {
     if (!data[field] || String(data[field]).trim() === '') {

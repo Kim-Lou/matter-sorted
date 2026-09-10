@@ -18,6 +18,9 @@ content/notes/<yyyy-mm-slug>/
 ```yaml
 ---
 title: "产线级优化为什么先是数据流问题"
+id: "2026-09-data-pipeline" # 必填且等于目录名，永久稳定
+updated: "2026-09-05"       # 最后实质修订日期，不早于 date
+revision: 1                 # 正整数，每次正式修订递增
 abstract: "两三句话，相当于论文摘要，说清楚这篇的核心论点"
 layer: "运营层"          # 必须是以下四者之一：感知层 / 决策层 / 执行层 / 运营层
 band: "8-14 μm"          # 可选，技术标注（波长/频段/其他量化标签），没有就留空字符串
@@ -63,9 +66,10 @@ git commit -m "add: <标题>"
 git push
 ```
 
-文章先 push 到 `article` 分支，经审阅合并到 `main`。网站以 GitHub 仓库
-`https://github.com/Kim-Lou/MatterSorted.git` 的 `main` 分支为发布源；合并后由托管平台
-自动构建并结构化展示，不需要CMS或手动上传文件。
+文章素材先 push 到 `article` 分支；该分支只保留 `content/notes/` 下的文章目录和必要说明，不放 `app/`、`components/`、`lib/`、`scripts/`、`package.json` 等网站代码。
+审阅通过后，把对应文章目录同步到 `code` 分支并提交。网站以 GitHub 仓库
+`https://github.com/Kim-Lou/matter-sorted.git` 的 `code` 分支为发布源；`code` 更新后由托管平台
+自动构建并结构化展示，不需要CMS或手动上传文件。注意：正式托管尚未配置，当前 GitHub Actions 仅自动校验与构建，不会部署公网。文章 ID、修订规则和接入步骤见 [持续发布规范](./PUBLISHING.md)。
 
 构建还会自动生成 `/llms.txt`（文章索引）和 `/llms-full.txt`（完整Markdown语料），
 因此新增文章无需额外维护一份给agent使用的副本。

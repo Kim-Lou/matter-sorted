@@ -3,7 +3,7 @@ export const DEFAULT_LOCALE = 'zh';
 
 export const dictionaries = {
   zh: {
-    siteTitle: '物尽其分 · Matter, Sorted.',
+    siteTitle: '物尽其分 · Matter Sorted',
     heroTitle: '技术为什么演化成现在这样，而不是别的样子',
     heroDesc: '固废分选的技术与产品笔记：从感知层的物理限制，到运营层的数据流问题。',
     notesHeading: '产品开发',
@@ -13,7 +13,7 @@ export const dictionaries = {
     translationMissing: '本文暂无中文版本，以下为英文原文。',
   },
   en: {
-    siteTitle: 'Matter, Sorted. · 物尽其分',
+    siteTitle: 'Matter Sorted · 物尽其分',
     heroTitle: 'Why the technology evolved this way, and not another',
     heroDesc:
       'Technical and product notes on solid-waste sorting, from the physical limits of perception to data-flow problems in operations.',

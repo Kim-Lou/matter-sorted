@@ -12,9 +12,9 @@
 | 内容格式 | Markdown + Frontmatter (`.mdx`) | 纯文本，Git友好，agent读写成本最低；MDX允许正文里嵌`<Video />`等组件 |
 | MDX编译 | `next-mdx-remote` | 内容文件不放在`app/`路由目录里，构建时按需编译，内容和路由解耦 |
 | Frontmatter解析 | `gray-matter` | 轻量，读取`---`元数据块 |
-| 发布源 | GitHub | `Kim-Lou/MatterSorted` 是网站构建的唯一上游来源 |
-| 部署 | GitHub驱动的静态构建 | `main` 更新后由托管平台拉取、构建并发布 |
-| 版本控制 | Git / GitHub | 内容和代码分支协作，合并到 `main` 后统一发布 |
+| 发布源 | GitHub | `Kim-Lou/matter-sorted` 是网站构建的唯一上游来源 |
+| 部署 | GitHub驱动的静态构建 | `code` 更新后由托管平台拉取、构建并发布 |
+| 版本控制 | Git / GitHub | `code` 做代码和构建版本迭代，`article` 只保存文章素材 |
 
 **不选的方案及原因**（避免以后重新纠结）：
 - 不用CMS（如Sanity/Contentful）：内容管理会脱离Git工作流，agent操作要多学一套API，违背"像GitHub那样"的初衷。
@@ -59,8 +59,8 @@ ARCHITECTURE.md         本文档
    ↓ (按 WRITING_STANDARD.md 和 CONTENT_GUIDE.md 落盘)
 本地：npm run check   ← 发布前自检，未通过则中止
    ↓
-提交到 article 分支 → 审阅 → 合并到 main → push GitHub
-   ↓ (托管平台监听 GitHub main 分支)
+提交到 article 分支 → 审阅 → 同步文章目录到 code → push GitHub
+   ↓ (托管平台监听 GitHub code 分支)
 托管平台：拉取代码 → npm run build → 发布静态产物
    ↓
 域名指向的线上站点在 1–2 分钟内更新完成
@@ -68,18 +68,17 @@ ARCHITECTURE.md         本文档
 
 ### 一次性配置（做一次，之后自动化）
 
-1. GitHub仓库固定为 `https://github.com/Kim-Lou/MatterSorted.git`。
-2. 托管平台连接该仓库并将生产分支设为 `main`。
+1. GitHub仓库固定为 `https://github.com/Kim-Lou/matter-sorted.git`。
+2. 托管平台连接该仓库并将生产分支设为 `code`。
 3. Vercel Dashboard → Domains → 绑定你自己的域名；去域名服务商把DNS的CNAME指向Vercel提供的地址。
-4. 完成后，**以后每次合并并 push 到 `main`，网站自动更新**。
+4. 完成后，**以后每次 push 到 `code`，网站自动更新**。
 
 ### 分支职责
 
 | 分支 | 用途 | 可修改范围 |
 |---|---|---|
-| `main` | 已审阅、可发布的唯一生产基线 | 只接受合并后的稳定内容 |
-| `code` | 页面、组件、构建脚本、样式与基础设施 | `app/`、`components/`、`lib/`、`scripts/`、配置与相关文档 |
-| `article` | Kim 与 agent 讨论后形成的文章 | 原则上只改 `content/`，必要时同步内容规范 |
+| `code` | 唯一代码、构建和版本迭代分支 | `app/`、`components/`、`lib/`、`scripts/`、配置、相关文档，以及已审阅入站的 `content/notes/` |
+| `article` | Kim 与 agent 讨论后形成的文章素材 | 只保留 `content/notes/` 下的文章目录和必要说明，不放网站代码 |
 
 ### 日常更新（agent执行）
 
@@ -88,7 +87,7 @@ npm run check                          # 校验通过再往下走
 git add content/notes/<新文件夹>
 git commit -m "add: <标题>"
 git push origin article
-# 审阅通过后，将 article 合并进 main 并 push
+# 审阅通过后，将对应文章目录同步到 code 并 push
 ```
 
 无需手动登录服务器、无需FTP上传、无需重启任何服务。
