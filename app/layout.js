@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: '光选之间 · Kim',
-  description: '多光谱融合分选的原理笔记',
+  title: '物尽其分 · Matter, Sorted.',
+  description: '固废分选的技术与产品笔记',
 };
 
 // 根 layout 只负责最外层壳（html/head/字体），语言相关的内容交给 app/[locale]/layout.js

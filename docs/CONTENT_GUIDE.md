@@ -64,7 +64,7 @@ git push
 ```
 
 文章先 push 到 `article` 分支，经审阅合并到 `main`。网站以 GitHub 仓库
-`https://github.com/Kim-Lou/sorted-in-light.git` 的 `main` 分支为发布源；合并后由托管平台
+`https://github.com/Kim-Lou/MatterSorted.git` 的 `main` 分支为发布源；合并后由托管平台
 自动构建并结构化展示，不需要CMS或手动上传文件。
 
 构建还会自动生成 `/llms.txt`（文章索引）和 `/llms-full.txt`（完整Markdown语料），

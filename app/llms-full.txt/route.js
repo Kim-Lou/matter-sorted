@@ -19,7 +19,7 @@ export function GET() {
   });
 
   const body = [
-    '# Sorted in Light / 光选之间 — Full corpus',
+    '# Matter, Sorted. / 物尽其分 — Full corpus',
     '',
     'This file contains the canonical Chinese text of every published article.',
     '',

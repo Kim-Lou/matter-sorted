@@ -1,7 +1,7 @@
-# Sorted in Light · Kim
+# 物尽其分 · Matter, Sorted.
 
-**Sorted in Light** (中文：光选之间) is a personal research site documenting the
-principles behind multimodal spectral fusion sorting for solid waste — the
+**Matter, Sorted.** (中文：物尽其分) is a personal research site documenting the
+technology, products, and principles behind multimodal spectral fusion sorting for solid waste — the
 technology that lets machines separate materials by fusing RGB, near-infrared,
 laser, and X-ray signals, most of which fall outside what the human eye can
 see. It is a personal research site written and maintained by Kim.
@@ -69,7 +69,7 @@ Content is developed locally through discussion between Kim and an agent,
 then written as structured MDX and validated by `scripts/publish-check.js`.
 Article work is committed to the `article` branch; site code is developed on
 the `code` branch. Reviewed work is merged into `main` and pushed to
-[`Kim-Lou/sorted-in-light`](https://github.com/Kim-Lou/sorted-in-light), which
+[`Kim-Lou/MatterSorted`](https://github.com/Kim-Lou/MatterSorted), which
 is the source of truth used by the website build. No CMS or manual file upload
 is part of the normal publishing path.
 
@@ -77,7 +77,7 @@ is part of the normal publishing path.
 
 ## 5. Why this split exists
 
-The site is a durable, citable personal knowledge base about optical sorting.
+The site is a durable, citable personal knowledge base about solid-waste sorting.
 It is designed for both human readers and software agents: every article has
 consistent frontmatter and stable URLs, while `/llms.txt` exposes the content
 index and `/llms-full.txt` exposes the complete Markdown corpus. That only

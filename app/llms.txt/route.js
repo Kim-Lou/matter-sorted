@@ -5,9 +5,9 @@ export const dynamic = 'force-static';
 export function GET() {
   const notes = getAllNotes('zh');
   const lines = [
-    '# Sorted in Light / 光选之间',
+    '# Matter, Sorted. / 物尽其分',
     '',
-    '> A personal research site about the principles and constraints of multimodal spectral fusion sorting.',
+    '> A personal research site about the technology, products, principles, and constraints of solid-waste sorting.',
     '',
     'The default language is Chinese. Articles are organized into perception, decision, execution, and operations layers.',
     '',
