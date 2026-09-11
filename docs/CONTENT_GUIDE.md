@@ -40,10 +40,11 @@ video: "./video.url"      # 可选，没有视频就删掉这一行，不要留�
 ## 发布前必须跑
 
 ```
+npm run sync:articles
 npm run check
 ```
 
-这一步会校验：frontmatter 字段是否齐全、`layer` 取值是否合法、正文里引用的图片是否存在。
+第一步会从 GitHub `article` 分支读取最新文章素材并同步到本地 `content/notes`；第二步会校验：frontmatter 字段是否齐全、`layer` 取值是否合法、正文里引用的图片是否存在。
 校验不通过就不要 push——`npm run build` 会自动先跑这个检查，失败会直接中断构建。
 
 ## 图片路径是怎么"生效"的（了解即可，不用手动处理）

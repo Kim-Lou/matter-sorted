@@ -24,4 +24,6 @@ GitHub Actions 只对 `code` 的 push 和面向 `code` 的 pull request 执行 n
 
 ## 本地验证
 
-执行 `npm run check`。开发服务器运行时，以 `NEXT_DIST_DIR=.next-build npm run build` 使用独立缓存，防止生产构建覆盖开发缓存。图文通过检查后可在本地文章 URL 预览。
+执行 `npm run sync:articles` 从 GitHub `article` 分支同步文章素材，再执行 `npm run check`。`npm run dev` 会尝试自动同步 `article` 分支；如果网络不可用或本地 `content/notes` 有未提交改动，会保留当前本地内容继续启动。需要明确覆盖本地内容时运行 `npm run sync:articles -- --force`。
+
+开发服务器运行时，以 `NEXT_DIST_DIR=.next-build npm run build` 使用独立缓存，防止生产构建覆盖开发缓存。图文通过检查后可在本地文章 URL 预览。

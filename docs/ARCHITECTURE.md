@@ -57,6 +57,8 @@ ARCHITECTURE.md         本文档
 ```
 本地：Kim 与 agent 讨论、推演并形成文章
    ↓ (按 WRITING_STANDARD.md 和 CONTENT_GUIDE.md 落盘)
+本地：npm run sync:articles  ← 从 GitHub article 分支读取最新文章素材
+   ↓
 本地：npm run check   ← 发布前自检，未通过则中止
    ↓
 提交到 article 分支 → 审阅 → 同步文章目录到 code → push GitHub
