@@ -64,7 +64,7 @@ export default async function NotePage({ params }) {
         </span>
       </div>
 
-      <p className="intro-description">{data.abstract}</p>
+      <p className="article-intro">{data.abstract}</p>
 
       {resolvedCover && (
         // eslint-disable-next-line @next/next/no-img-element
